@@ -1,0 +1,36 @@
+<div class="card mt-4">
+  <h5 class="card-header">{{ pageTitle }}</h5>
+  <div class="card-body">
+    <button class="btn btn-success" (click)="showHideAvatar()">Show/hide Avatar</button>
+    <br>
+    Change size avatar:
+    <input type="number" [value]="sizeAvatar" (click)="changeSizeAvatar($event)"> px
+    <div *ngIf="message" class="alert alert-success">
+      {{ message}}
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th [hidden]="hideShowImage" scope="col">Avatar</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users | paginate: { itemsPerPage: 2, currentPage: p }; let i  = index ">
+        <th scope="row">{{ i + 1}}</th>
+        <td>{{ user.name}}</td>
+        <td>{{ user.email}}</td>
+        <td [hidden]="hideShowImage"><img [width]="sizeAvatar" [src]="user.avatar" alt=""></td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
