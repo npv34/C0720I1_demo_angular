@@ -1,36 +1,19 @@
-<div class="card mt-4">
-  <h5 class="card-header">{{ pageTitle }}</h5>
-  <div class="card-body">
-    <button class="btn btn-success" (click)="showHideAvatar()">Show/hide Avatar</button>
-    <br>
-    Change size avatar:
-    <input type="number" [value]="sizeAvatar" (click)="changeSizeAvatar($event)"> px
-    <div *ngIf="message" class="alert alert-success">
-      {{ message}}
-    </div>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    <table class="table">
-      <thead class="thead-light">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th [hidden]="hideShowImage" scope="col">Avatar</th>
-        <th scope="col"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let user of users | paginate: { itemsPerPage: 2, currentPage: p }; let i  = index ">
-        <th scope="row">{{ i + 1}}</th>
-        <td>{{ user.name}}</td>
-        <td>{{ user.email}}</td>
-        <td [hidden]="hideShowImage"><img [width]="sizeAvatar" [src]="user.avatar" alt=""></td>
-        <td>
-          <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
-        </td>
-      </tr>
+<div class="mat-elevation-z8">
+  <table style="width: 100%" mat-table [dataSource]="dataSource">
 
-      </tbody>
-    </table>
-  </div>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
