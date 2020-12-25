@@ -48,4 +48,8 @@ export class UserService {
   getAll() {
     return this.users;
   }
+
+  add(user) {
+    this.users.push(user)
+  }
 }

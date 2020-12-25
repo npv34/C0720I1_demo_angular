@@ -14,6 +14,10 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
+import { UserAddComponent } from './component/users/user-add/user-add.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {GroupListComponent} from "./component/groups/group-list/group-list.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import {MatButtonModule} from "@angular/material/button";
     UserListComponent,
     InputSearchComponent,
     ProductListComponent,
-    MessageComponent
+    MessageComponent,
+    UserAddComponent,
+    GroupListComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,9 @@ import {MatButtonModule} from "@angular/material/button";
     MatTableModule,
     MatPaginatorModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
